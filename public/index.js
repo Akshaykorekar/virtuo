@@ -253,6 +253,35 @@ for(x in rentals)
   rentalp=0;
 }
 
+var x;
+var nod=2;
+var nok=1;
+var rentalp;
+var deductibleReduction=true;
+for(x in rentals)
+{
+  if(rentals[x].pickupDate==rentals[x].returnDate)
+  {
+    nod=1;
+  }
+  else {
+    nod=(rentals[x].returnDate.substring(8))-(rentals[x].pickupDate.substring(8));
+  }
+  if(rentals[x].options.deductibleReduction==true)
+  {
+    rentalp=rentals[x].price+(4*nod);
+  }
+  else {
+    {
+      rentalp=rentals[x].price;
+    }
+  }
+  console.log(rentals[x]);
+  console.log("price:"+rentalp);
+  rentalp=0;
+}
+
+
 
 console.log(cars);
 console.log(rentals);
