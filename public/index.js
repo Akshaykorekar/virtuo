@@ -280,6 +280,7 @@ for(x in rentals)
   console.log("price:"+rentalp);
   rentalp=0;
 }
+}
 
 
 
