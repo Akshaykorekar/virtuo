@@ -229,6 +229,31 @@ for(x in rentals)
   }
 
 }
+
+var x;
+var nod=2;
+var nok=1;
+var commission,rentalp;
+for(x in rentals)
+{
+  if(rentals[x].pickupDate==rentals[x].returnDate)
+  {
+    nod=1;
+  }
+  else {
+    nod=(rentals[x].returnDate.substring(8))-(rentals[x].pickupDate.substring(8));
+  }
+  commission=rentals[x].price*.3;
+  console.log("insurance:"+commission/2);
+  rentals[x].commission.insurance=commission/2;
+  console.log("treasury:"+1*nod);
+  rentals[x].commission.treasury=1*nod;
+  console.log("Virtuo:"+((commission/2)-(1*nod)));
+  rentals[x].commission.virtuo=((commission/2)-(1*nod));
+  rentalp=0;
+}
+
+
 console.log(cars);
 console.log(rentals);
 console.log(actors);
