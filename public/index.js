@@ -280,9 +280,72 @@ for(x in rentals)
   console.log("price:"+rentalp);
   rentalp=0;
 }
+
+
+var x,y,z;
+for(x in actors)
+{
+  console.log(actors[x].rentalId);
+  for(y in rentals)
+  {
+    if(actors[x].rentalId==rentals[y].id)
+    {
+      for(z in actors[x].payment)
+      {
+        if(actors[x].payment[z].who=="driver")
+        {
+            if(rentals[y].pickupDate==rentals[y].returnDate)
+            {
+              nod=1;
+            }
+            else {
+              nod=(rentals[y].returnDate.substring(8))-(rentals[y].pickupDate.substring(8));
+            }
+            if(rentals[x].options.deductibleReduction==true)
+            {
+              actors[x].payment[z].amount=rentals[y].price+(4*nod);
+            }
+            else {
+              {
+                actors[x].payment[z].amount=rentals[y].price;
+              }
+            }
+        }
+        else if(actors[x].payment[z].who=="partner")
+        {
+          actors[x].payment[z].amount=rentals[y].price-(rentals[y].price*.3);
+        }
+        else if(actors[x].payment[z].who=="insurance")
+        {
+          actors[x].payment[z].amount=rentals[y].commission.insurance;
+        }
+        else if(actors[x].payment[z].who=="treasury")
+        {
+          actors[x].payment[z].amount=rentals[y].commission.treasury;
+        }
+        else if(actors[x].payment[z].who=="virtuo")
+        {
+          if(rentals[y].pickupDate==rentals[y].returnDate)
+          {
+            nod=1;
+          }
+          else {
+            nod=(rentals[y].returnDate.substring(8))-(rentals[y].pickupDate.substring(8));
+          }
+          if(rentals[x].options.deductibleReduction==true)
+          {
+            actors[x].payment[z].amount=rentals[y].commission.virtuo+(4*nod);
+          }
+          else {
+            {
+              actors[x].payment[z].amount=rentals[y].commission.virtuo;
+            }
+          }
+        }
+      }
+    }
+  }
 }
-
-
 
 console.log(cars);
 console.log(rentals);
