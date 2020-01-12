@@ -188,6 +188,47 @@ for(x in rentals)
 
 }
 
+
+var x,y;
+var nod=0;
+var nok=0;
+var rentalp;
+for(x in rentals)
+{
+  if(rentals[x].pickupDate==rentals[x].returnDate)
+  {
+    nod=1;
+  }
+  else {
+    nod=(rentals[x].returnDate.substring(8))-(rentals[x].pickupDate.substring(8));
+  }
+  nok=rentals[x].distance;
+  for(y in cars)
+  {
+    if(rentals[x].carId==(cars[y].id))
+    {
+      rentalp=(1*cars[y].pricePerDay);
+      if(nod>1&&nod<=4)
+      {
+        rentalp=rentalp+((nod-1)(rentalp-(rentalp.1)));
+      }
+      else if(nod>4&&nod<=10)
+      {
+        rentalp=rentalp+(3*(rentalp-(rentalp*.1)))+((nod-4)(rentalp-(rentalp.3)));
+      }
+      else {
+        rentalp=rentalp+(3*(rentalp-(rentalp*.1)))+(6*(rentalp-(rentalp*.3)))+((nod-10)(rentalp-(rentalp.5)));
+      }
+      rentalp=rentalp+(nok*cars[y].pricePerKm);
+      rentals[x].price=rentalp;
+      console.log(cars[y]);
+      console.log("price : "+rentalp);
+      rentalp=0;
+    }
+
+  }
+
+}
 console.log(cars);
 console.log(rentals);
 console.log(actors);
